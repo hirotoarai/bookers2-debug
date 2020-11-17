@@ -1,0 +1,29 @@
+<div class="container">
+<footer>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+
+		<h1>Editing Book</h1>
+		<%= form_with(model: @book, local: true) do |f| %>
+          <% if @book.errors.any? %>
+           <div id="error_explanation">
+            <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+            <ul>
+             <% @book.errors.full_messages.each do |message| %>
+             <li><%= message %></li>
+             <% end %>
+            </ul>
+           </div>
+          <% end %>
+        <% end %>
+
+		<%= render "books/form", book: @book %>
+		<%= link_to "Show", book_path(@book), class: "book_#{@book.id}" %>
+		<%= link_to "Back", books_path, class: "back" %>
+
+	</div>
+	<div class="col-md-3"></div>
+
+</div>
+ </footer>
+</div>
