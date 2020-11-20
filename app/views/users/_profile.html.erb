@@ -10,8 +10,25 @@
 		<th>introduction</th>
 		<th><%= user.introduction %></th>
 	</tr>
+	
+	<tr>
+	    <th>follows</th>
+	    <th><%= link_to user.followeds.count, followed_user_path(id: user) %></th>
+	</tr>
+	
+	<tr>
+		<th>followers</th>
+		<th><%= link_to user.followers.count, followers_user_path(id: user) %></th>
+    </tr>
 </table>
 
 <div class="row">
+  <% unless current_user == user %>
+    <% if current_user.followed?(user) %>
+      <%= button_to 'フォローを外す', follow_relationship_path(id: user), method: :delete, class: "btn btn-info col-xs-5 col-xs-offset-1" %>
+    <% else %>
+      <%= button_to 'フォローする', follow_relationships_path(id: user), method: :POST, class: "btn btn-success col-xs-5 col-xs-offset-1" %>
+    <% end %>
+  <% end %>
 	<%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
 </div>

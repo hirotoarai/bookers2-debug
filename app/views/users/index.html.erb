@@ -1,5 +1,4 @@
 <div class="container">
- <footer>
  <div class="row">
   <div class="col-xs-3">
 <h2>User info</h2>
@@ -25,6 +24,15 @@
 		<tr>
 			<td><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'50x50' %></td>
 			<td><%= user.name %></td>
+			<td>フォロー数:<%= user.followeds.count %></td>
+			<td>フォロワー数:<%= user.followers.count %></td>
+			<% unless current_user == user %>
+              <% if current_user.followed?(user) %>
+                <td><%= link_to 'フォローを外す', follow_relationship_path(id: user), method: :delete %></td>
+              <% else %>
+                <td><%= link_to 'フォローする', follow_relationships_path(id: user), method: :POST %></td>
+              <% end %>
+            <% end %>
 			<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
 		</tr>
 		<% end %>
@@ -34,5 +42,4 @@
 
   </div>
  </div>
- </footer>
 </div>
