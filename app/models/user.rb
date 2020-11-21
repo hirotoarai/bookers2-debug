@@ -24,6 +24,22 @@ class User < ApplicationRecord
   def unfollow(other_user)
     self.followed_relationships.find_by(followed_id: other_user.id).destroy
   end
+  
+  def self.search(search, type)
+      if search
+      	if type == "exact"
+          User.where('name LIKE ?', "#{search}")
+        elsif type == "forward"
+          User.where('name LIKE ?', "#{search}%")
+        elsif type == "backward"
+          User.where('name LIKE ?', "%#{search}")
+        elsif type == "partial"
+          User.where('name LIKE ?', "%#{search}%")
+        end
+      else
+        User.all
+      end
+  end
 
   attachment :profile_image, destroy: false
   validates :introduction, length: { maximum: 50 }
