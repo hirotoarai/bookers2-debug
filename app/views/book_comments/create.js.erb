@@ -1,0 +1,2 @@
+$(".comment_book_<%= @book.id %>").html("<%= j(render 'book_comments/comment', book: @book, user: @user) %>")
+$('.comment_form').val('')
