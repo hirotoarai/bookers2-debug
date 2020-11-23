@@ -67,3 +67,5 @@ gem "refile-mini_magick"
 gem 'jquery-rails'
 
 gem 'bootstrap-sass'
+
+gem 'jp_prefecture' #住所取得用

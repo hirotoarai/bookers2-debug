@@ -8,11 +8,35 @@
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, class: "name" %>
   </div>
+  
   <!--name表示の追加-->
-
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, class: "email" %>
+  </div>
+  
+  <!-- postcode -->
+  <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autocomplete: "postcode", id: "user_postcode" %>
+  </div>
+
+  <!-- prefecture code -->
+  <div class="field">
+    <%= f.label :prefecture_code %><br />
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %>
+  </div>
+
+  <!-- address city -->
+  <div class="field">
+    <%= f.label :address_city %><br />
+    <%= f.text_field :address_city, autocomplete: "address_city", id: "user_address_city" %>
+  </div>
+
+  <!-- address street -->
+  <div class="field">
+    <%= f.label :address_street %><br />
+    <%= f.text_field :address_street, autocomplete: "address_street", id: "user_address_street" %>
   </div>
 
   <div class="field">
